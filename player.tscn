@@ -25,3 +25,4 @@ sprite_frames = SubResource("SpriteFrames_onrkg")
 shape = SubResource("SphereShape3D_bu0v1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0643814, 2.5400498)
