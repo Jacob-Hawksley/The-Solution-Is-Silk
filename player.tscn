@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://np0egubee6ci"]
+[gd_scene load_steps=6 format=3 uid="uid://np0egubee6ci"]
 
 [ext_resource type="Texture2D" uid="uid://k4uy1ox5qt7j" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dc8fuco04r7v5" path="res://player.gd" id="1_onrkg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
 animations = [{
@@ -16,7 +17,10 @@ animations = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_bu0v1"]
 radius = 1.1201438
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
+
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 sprite_frames = SubResource("SpriteFrames_onrkg")
@@ -24,5 +28,11 @@ sprite_frames = SubResource("SpriteFrames_onrkg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_bu0v1")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0643814, 2.5400498)
+[node name="CamRig" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamRig"]
+shape = SubResource("SphereShape3D_onrkg")
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CamRig/SpringArm3D"]
+fov = 90.0
