@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://81xpbhtcm8vu"]
+
+[ext_resource type="Script" uid="uid://bwxj42a4gjnmm" path="res://silk.gd" id="1_oabc1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w6bum"]
+radius = 0.07046396
+
+[node name="Silk" type="Area3D"]
+script = ExtResource("1_oabc1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_w6bum")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.06732344

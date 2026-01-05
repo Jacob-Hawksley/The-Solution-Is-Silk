@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/spider.glb-de0ce43d55a3735405e4c86cc40d2dbe.s
 
 [params]
 
-nodes/root_type="CharacterBody3D"
-nodes/root_name="Player"
+nodes/root_type="Node3D"
+nodes/root_name="Spider"
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

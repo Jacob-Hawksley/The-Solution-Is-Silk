@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const ROTATION_SPEED = 1.0
+const ROTATION_SPEED = 1
 
 
 const MOUSE_SENSITIVITY = 0.003
@@ -11,9 +11,17 @@ const MOUSE_SENSITIVITY = 0.003
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-@onready var cam_rig = $Player/CamRig
-@onready var spring_arm = $Player/CamRig/SpringArm3D
-@onready var cam = $Player/CamRig/SpringArm3D/Camera3D
+@onready var cam_rig = $CamRig
+@onready var spring_arm = $CamRig/SpringArm3D
+@onready var cam = $CamRig/SpringArm3D/Camera3D
+@onready var aim_ray: RayCast3D = $CamRig/SpringArm3D/Camera3D/AimRay
+@onready var muzzle: Marker3D = $Spider/Marker3D
+@onready var camera: Camera3D = $CamRig/SpringArm3D/Camera3D
+var projtcsn = preload("res://silk.tscn")
+ 
+func _input(event):
+	if event.is_action_pressed("shoot"):
+		shoot()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -52,7 +60,6 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-	
 	move_and_slide()
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -61,3 +68,14 @@ func _process(delta):
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+func shoot():
+	var target_point: Vector3
+	
+	if aim_ray.is_colliding():
+		target_point = aim_ray.get_collision_point()
+	else:
+		target_point = aim_ray.to_global(aim_ray.target_position)
+	var silk = projtcsn.instantiate()
+	get_tree().root.add_child(silk)
+	silk.global_position = muzzle.global_position
+	silk.look_at(target_point, Vector3.UP)
