@@ -10,6 +10,7 @@ const MOUSE_SENSITIVITY = 0.003
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	aim_ray.add_exception(self)
 
 @onready var cam_rig = $CamRig
 @onready var spring_arm = $CamRig/SpringArm3D

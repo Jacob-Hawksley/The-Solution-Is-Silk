@@ -21,7 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010588646, 0.06487799, -0.
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamRig"]
 shape = SubResource("SphereShape3D_onrkg")
-spring_length = 12.0
+spring_length = 24.0
 
 [node name="Camera3D" type="Camera3D" parent="CamRig/SpringArm3D"]
 current = true
@@ -29,9 +29,11 @@ fov = 90.0
 
 [node name="AimRay" type="RayCast3D" parent="CamRig/SpringArm3D/Camera3D"]
 target_position = Vector3(0, 0, -1000)
+debug_shape_custom_color = Color(0, 0.6666667, 0, 1)
+debug_shape_thickness = 1
 
 [node name="Spider" parent="." instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19066429, 0, 7)
 
 [node name="Marker3D" type="Marker3D" parent="Spider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19066429, 0, -9.339561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19066429, 1.2330127, -9.339561)

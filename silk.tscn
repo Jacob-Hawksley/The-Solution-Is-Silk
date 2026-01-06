@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://81xpbhtcm8vu"]
+[gd_scene load_steps=4 format=3 uid="uid://81xpbhtcm8vu"]
 
 [ext_resource type="Script" uid="uid://bwxj42a4gjnmm" path="res://silk.gd" id="1_oabc1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w6bum"]
 radius = 0.07046396
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oabc1"]
+shading_mode = 0
+albedo_color = Color(0.0017382791, 12.679391, 3.772894, 1)
+
 [node name="Silk" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_oabc1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -13,3 +19,6 @@ shape = SubResource("SphereShape3D_w6bum")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 radius = 0.06732344
+material = SubResource("StandardMaterial3D_oabc1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
